@@ -92,7 +92,13 @@ class Processor {
      *   });
      */
     process(css, opts = { }) {
-        return new LazyResult(this, css, opts);
+        let traverseEngine = opts.traverseEngine;
+        delete opts.traverseEngine;
+        if (traverseEngine === 'babel-traverse') {
+            return new LazyResultOnBabel(this, css, opts);
+        } else {
+            return new LazyResult(this, css, opts);
+        }
     }
 
     normalize(plugins) {

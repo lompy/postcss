@@ -1,0 +1,8 @@
+* AST mapper
+** DONE convert PostCSS AST to PostCSSOnBabel AST as plain object.
+** TODO Define types.
+* API mapper
+** TODO make PostCSS API calls to generate babel-traverse visitor.
+
+* AST back mapper
+** TODO convert PostCSSOnBabel AST to that of PostCSS.
