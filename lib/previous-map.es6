@@ -1,6 +1,18 @@
-import   mozilla  from 'source-map';
-import   path     from 'path';
-import   fs       from 'fs';
+import mozilla  from 'source-map';
+import path     from 'path';
+import fs       from 'fs';
+
+function fromBase64(str) {
+    if ( Buffer ) {
+        if ( Buffer.from && Buffer.from !== Uint8Array.from ) {
+            return Buffer.from(str, 'base64').toString();
+        } else {
+            return new Buffer(str, 'base64').toString();
+        }
+    } else {
+        return window.atob(str);
+    }
+}
 
 /**
  * Source map information from input CSS.
@@ -78,8 +90,7 @@ class PreviousMap {
             return decodeURIComponent( text.substr(uri.length) );
 
         } else if ( baseUri.test(text) ) {
-            return new Buffer(text.substr(RegExp.lastMatch.length), 'base64')
-                .toString();
+            return fromBase64(text.substr(RegExp.lastMatch.length));
 
         } else {
             let encoding = text.match(/data:application\/json;([^,]+),/)[1];

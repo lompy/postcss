@@ -138,15 +138,19 @@ it('tokenizes at-word end', () => {
 });
 
 it('tokenizes urls', () => {
-    run('url(/*\\))', [ ['word',     'url',     1, 1, 1, 3],
-                         ['brackets', '(/*\\))', 1, 4, 1, 9] ]);
+    run('url(/*\\))', [
+        ['word',     'url',     1, 1, 1, 3],
+        ['brackets', '(/*\\))', 1, 4, 1, 9]
+    ]);
 });
 
 it('tokenizes quoted urls', () => {
-    run('url(")")', [ ['word',   'url', 1, 1, 1, 3],
-                       ['(',      '(',   1, 4],
-                       ['string', '")"', 1, 5, 1, 7],
-                       [')',      ')',   1, 8] ]);
+    run('url(")")', [
+        ['word',   'url', 1, 1, 1, 3],
+        ['(',      '(',   1, 4],
+        ['string', '")"', 1, 5, 1, 7],
+        [')',      ')',   1, 8]
+    ]);
 });
 
 it('tokenizes at-symbol', () => {
@@ -255,4 +259,13 @@ it('ignores unclosing comment on request', () => {
         ['word',     'url', 1, 1, 1, 3],
         ['brackets', '(',   1, 4, 1, 4]
     ], { ignoreErrors: true });
+});
+
+it('tokenizes hexadecimal escape', () => {
+    run('\\0a \\09 \\z ', [
+        ['word',  '\\0a ', 1, 1, 1, 4],
+        ['word',  '\\09 ', 1, 5, 1, 8],
+        ['word',  '\\z',   1, 9, 1, 10],
+        ['space', ' ']
+    ]);
 });

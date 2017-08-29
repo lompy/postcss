@@ -305,6 +305,7 @@ loosely resembles the original.
 * [`stylehacks`] removes CSS hacks based on browser support.
 * [`postcss-mq-optimize`] removes invalid media queries or its expresions.
 * [`postcss-uncss`] removes unused CSS from your stylesheets.
+* [`postcss-html-filter`] filters out CSS that does not apply to the HTML you provide.
 * [`postcss-no-important`] delete declarations !important.
 
 See also plugins in modular minifier [`cssnano`].
@@ -378,10 +379,13 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-flexboxfixer`] unprefixes `-webkit-` only flexbox in legacy CSS.
 * [`postcss-flexbugs-fixes`] fixes some of known [flexbox bugs].
 * [`postcss-gradientfixer`] unprefixes `-webkit-` only gradients in legacy CSS.
+* [`postcss-hash`] replaces output file names with hash algorithms
+  for cache busting.
 * [`postcss-ie8`] strips out unsupported properties and media queries for IE8.
 * [`postcss-increase-specificity`] increases the specificity of your selectors.
 * [`postcss-inline-rtl`] converts your CSS to right-to-left,
   but inline (adding just what you need).
+* [`postcss-letter-tracking`] generates relative, Photoshop-compatible letter tracking for improved letter spacing.
 * [`postcss-modules`]  allows to use CSS Modules everywhere.
 * [`postcss-mq-keyframes`] moves any animation keyframes in media queries
   to the end of the file.
@@ -456,6 +460,7 @@ See also plugins in modular minifier [`cssnano`].
 * [`postcss-spanish-stylesheets`] Spanish Style Sheets.
 * [`postcss-nope`] lets you write `nope` instead of `none`.
 
+[`postcss-letter-tracking`]:              https://github.com/letsjaam/postcss-letter-tracking
 [`postcss-combine-duplicated-selectors`]: https://github.com/ChristianMurphy/postcss-combine-duplicated-selectors
 [`postcss-attribute-case-insensitive`]:   https://github.com/Semigradsky/postcss-attribute-case-insensitive
 [`postcss-alter-property-value`]:         https://github.com/kunukn/postcss-alter-property-value
@@ -740,3 +745,5 @@ See also plugins in modular minifier [`cssnano`].
 [`postcss-start-to-end`]:                 https://github.com/sandrina-p/postcss-start-to-end
 [`postcss-autocorrect`]:                  https://github.com/DimitrisNL/postcss-autocorrect
 [`postcss-state-selector`]:               https://github.com/binjospookie/postcss-state-selector
+[`postcss-html-filter`]:                  https://github.com/mapbox/postcss-html-filter
+[`postcss-hash`]:                         https://github.com/dacodekid/postcss-hash

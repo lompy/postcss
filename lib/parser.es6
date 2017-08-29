@@ -257,6 +257,8 @@ export default class Parser {
         }
         this.init(node, token[2], token[3]);
 
+        let prev;
+        let shift;
         let last   = false;
         let open   = false;
         let params = [];
@@ -272,6 +274,16 @@ export default class Parser {
                 open = true;
                 break;
             } else if ( token[0] === '}') {
+                if ( params.length > 0 ) {
+                    shift = params.length - 1;
+                    prev = params[shift];
+                    while ( prev && prev[0] === 'space' ) {
+                        prev = params[--shift];
+                    }
+                    if ( prev ) {
+                        node.source.end = { line: prev[4], column: prev[5] };
+                    }
+                }
                 this.end(token);
                 break;
             } else {
@@ -334,7 +346,7 @@ export default class Parser {
         this.spaces += token[1];
         if ( this.current.nodes ) {
             let prev = this.current.nodes[this.current.nodes.length - 1];
-            if ( prev && prev.type === 'rule' ) {
+            if ( prev && prev.type === 'rule' && !prev.raws.ownSemicolon ) {
                 prev.raws.ownSemicolon = this.spaces;
                 this.spaces = '';
             }
